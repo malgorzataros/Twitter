@@ -3,7 +3,7 @@
 $servername="localhost";
 $username="root";
 $password="coderslab"; 
-$baseName= "twitter";   
+$baseName= "Twitter";   
 
 //Tworzenie nowego połączenia
 $conn=new mysqli($servername, $username, $password, $baseName);
