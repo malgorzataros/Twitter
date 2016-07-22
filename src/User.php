@@ -56,11 +56,18 @@ class User {
  
     public function setEmail($email) {
         $this->email = is_string($email) ? $email : '';
-        return $this;
+    }
+    
+    public function getEmail() {
+        return $this->email;
     }
     
     public function setPassword($password) {
         $this->password = is_string($password) ? $password : '';
+    }
+    
+    public function getPassword() {
+        return $this->password;
     }
     
     public function setHashedPassword($password){
@@ -71,8 +78,33 @@ class User {
         $this->fullName = is_string($fullName) ? $fullName : '';
     }
     
+    public function getFullName(){
+        return $this->fullName;
+    }
+    
     public function setActive($active){
         $this->active = $active == 0 || $active == 1 ? $active : 0;
+    }
+    
+    public function getActive(){
+        return $this->active;
+    }
+    
+    public function loadFromDB(mysqli $conn, $userId){
+        $sql = "SELECT * FROM User WHERE User.id = $userId";
+        $result = $conn->query($sql);
+        if($result->num_rows == 1){
+            //var_dump($result);
+            $row = $result->fetch_assoc();
+            $this->id = (int)$row['id'];
+            $this->email = $row['email'];
+            $this->password = $row['password'];
+            $this->fullName = $row['fullName'];
+            $this->active = (int)$row['active'];
+            return true;
+        } else {
+            return false;
+        }
     }
     
    public function saveToDB(mysqli $conn){

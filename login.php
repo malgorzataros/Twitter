@@ -17,6 +17,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             echo "Niepoprawne dane logowania <br>";
         }
     }
+    
+    $conn->close();
+    $conn = null;
 }
 
 

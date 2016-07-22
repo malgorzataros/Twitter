@@ -14,6 +14,6 @@ if($conn->connect_error){
 }
 
 $conn->set_charset("utf8");
-echo("Polaczenie z baza danych udane. <br>");
+//echo("Polaczenie z baza danych udane. <br>");
 
 
