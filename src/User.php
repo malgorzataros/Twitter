@@ -35,6 +35,26 @@ class User {
             return false;
         }
     }
+
+    static public function getAllUsers(mysqli $conn){
+        $sql = "SELECT * FROM User";
+        $result = $conn->query($sql);
+        $users = array();
+        if($result->num_rows > 0){
+            foreach($result as $row) {
+                $user = new User();
+                $user->id = (int)$row['id'];
+                $user->email = $row['email'];
+                $user->password = $row['password'];
+                $user->fullName = $row['fullName'];
+                $user->active = (int)$row['active'];
+                $users[] = $user;
+            }
+            return $users;
+        } else {
+            return false;
+        }
+    }
     
     private $id; 
     private $email;
@@ -133,6 +153,18 @@ class User {
            }
        }
    }
+
+    public function showUser(){
+        echo "<br><b>User: </b>" . $this->fullName . "<br>";
+        echo"<a href='detailsUser.php?userId=$this->id'> Informacje o $this->fullName </a><br>";
+        if($_SESSION['loggedUserId'] != $this->id){
+            echo "<a href='sendMessage.php?userId=$this->id'> Wyslij wiadomosc do $this->fullName </a><br><br>";
+        }
+    }
+
+    public function showUserTweet(){
+        echo "<br><b>User: " . $this->fullName . "</b><br><br>";
+    }
     
 }
 

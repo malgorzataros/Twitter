@@ -7,7 +7,7 @@ class Comment {
                        Comment.creation_date, Comment.text, User.fullName 
                        FROM Comment LEFT JOIN User ON Comment.user_id = User.id 
                        WHERE Comment.post_id = $tweetId 
-                       ORDER BY Comment.id DESC";
+                       ORDER BY Comment.id";
         $result = $conn->query($sql);
         $comments = array();
         if($result !== false){

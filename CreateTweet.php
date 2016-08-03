@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             echo "Blad dodania tweetu";
         }
     } else {
-        echo "Nie dodano Tweet'a. Czy Tweet ma na pewno 140 znakow";
+        echo "Nie dodano Tweeta. Czy Tweet ma na pewno 140 znakow";
         
     }
     
